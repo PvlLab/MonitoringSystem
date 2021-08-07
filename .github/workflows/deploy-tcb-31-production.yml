@@ -1,0 +1,16 @@
+name: deploy-tcb-31-production
+on:
+  push:
+    branches: [ tcb-31-production ]
+  pull_request:
+    branches: [ tcb-31-production ]
+
+jobs:
+  logmetrics-deploy:
+    runs-on: monitoring-tcb-31
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker monitoring system compose up
+      run: docker-compose -f docker-compose-grafana-linux.yml up -d --build
+    - name: clean all temp image
+      run: docker image prune --force

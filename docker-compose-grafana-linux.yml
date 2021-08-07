@@ -1,0 +1,100 @@
+version: '3.4'
+
+services:
+  cadvisor:
+    image: gcr.io/google-containers/cadvisor:latest
+    container_name: logmetrics-cadvisor
+    hostname: logmetricscadvisor
+    restart: always
+    ports:
+      - 8080
+    networks:
+      - logmetrics-network
+    volumes:
+      - /root/cadvisor/:/rootfs:ro
+      - /root/cadvisor/var/run:/var/run:rw
+      - /root/cadvisor/sys:/sys:ro
+      - /root/cadvisor/var/lib/docker/:/var/lib/docker:ro
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - ApplicationId=logmetrics-cadvisor
+
+  alertmanager:
+    image: logmetrics-alertmanager
+    container_name: logmetrics-alertmanager
+    hostname: logmetricsalertmanager
+    restart: always
+    build:
+      context: .
+      dockerfile: alertmanager/Dockerfile
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - ApplicationId=logmetrics-prometheus
+    networks:
+      - logmetrics-network
+    ports:
+      - 9093
+    volumes:
+      - /root/alertmanager/:/etc/alertmanager/
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+
+  prometheus:
+    image: logmetrics-prometheus
+    container_name: logmetrics-prometheus
+    hostname: logmetricsprometheus
+    build:
+      context: .
+      dockerfile: prometheus/Dockerfile
+    restart: always
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - ApplicationId=logmetrics-prometheus
+    volumes:
+      - /root/prometheus:/etc/prometheus/
+      - /root/prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+    depends_on:
+      - cadvisor
+    networks:
+      - logmetrics-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: logmetrics-grafana
+    hostname: logmetricsgrafana
+    restart: always
+    volumes:
+      - /root/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=loipv
+      - GF_SECURITY_ADMIN_PASSWORD=234fdswe65
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=vanloi@quangich.com
+      - GF_SMTP_PASSWORD=quangich123
+      - GF_SMTP_FROM_ADDRESS=vanloi@quangich.com
+      - TZ=Asia/Ho_Chi_Minh
+      - ApplicationId=logmetrics-grafana
+    networks:
+      - logmetrics-network
+    ports:
+      - 3000:3000
+    depends_on:
+      - "prometheus"
+
+networks:
+  logmetrics-network:
+    name: logmetrics-network
+    driver: bridge

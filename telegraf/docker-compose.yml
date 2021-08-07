@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+    telegraf:
+        container_name: logmetrics-telegraf
+        hostname: logmetricstelegraf
+        environment:
+            - TZ=Asia/Ho_Chi_Minh
+            - ApplicationId=logmetrics-telegraf
+        build:
+            context: .
+        restart: always
+        networks:
+            - default
+            - logmetrics-network
