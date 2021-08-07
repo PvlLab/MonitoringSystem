@@ -11,10 +11,11 @@ services:
     networks:
       - logmetrics-network
     volumes:
-      - /root/cadvisor/:/rootfs:ro
-      - /root/cadvisor/var/run:/var/run:rw
-      - /root/cadvisor/sys:/sys:ro
-      - /root/cadvisor/var/lib/docker/:/var/lib/docker:ro
+      - /:/rootfs:ro \
+      - /var/run:/var/run:ro \
+      - /sys:/sys:ro \
+      - /var/lib/docker/:/var/lib/docker:ro \
+      - /dev/disk/:/dev/disk:ro \
     deploy:
       mode: global
     environment:
