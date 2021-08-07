@@ -37,11 +37,9 @@ services:
       - logmetrics-network
     ports:
       - 9093:9093
-    volumes:
-      - /root/alertmanager/:/etc/alertmanager/
     command:
       - '--config.file=/etc/alertmanager/config.yml'
-      - '--storage.path=/alertmanager'
+      - '--storage.path=/etc/alertmanager/data'
 
   prometheus:
     image: logmetrics-prometheus
