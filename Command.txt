@@ -5,6 +5,7 @@ Bước 1: Cấu hình kết nối mạng cho máy mới cài đặt
     - Kiểm tra mạng => ip a (xem máy đã nhận dải ip chưa, nếu chưa thì cấu hình mạng)
     - Sửa cấu hình mạng => vi /etc/sysconfig/network-scripts/ifcfg-enp0se (trong đó 'enp0se' có thể thay đổi theo cacd mạng của từng máy)
         Đổi thuộc tính ONBOOT=yes
+        Có thể phải set ip tĩnh.
     - khởi động lại máy => reboot
     - Kiểm tra mạng bằng lệnh: ip a (xem máy đã nhận dải ip chưa)
 
