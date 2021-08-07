@@ -27,6 +27,7 @@ Bước 2: Tắt firewalld và cài đặt iptables
     - Kiểm tra các quy tắc trong iptables =>
         sudo iptables -nvL
         sudo ip6tables -nvL
+    - Mở port => sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
     - Trường hợp không muốn dùng iptables mà muốn dùng luôn firewalld thì cấu hình mở port cho firewalld như sau
         Kiểm tra vùng mạng đang được active => firewall-cmd --get-active-zones
@@ -52,3 +53,7 @@ Bước 3: cài đặt ssh
         Mở khóa mục Port => 22(default) for change it you want.
         Mở khóa mục PermitRootLogin => no(không muốn cho ssh bằng tài khoản root) | yes(cho ssh bằng tài khoản root)
     - Khởi động lại sshd để nhận cấu hình mới => sudo systemctl restart sshd
+
+
+Cài dặt git => sudo yum -y install git
+Cấu hình git lưu thông tin đăng nhập => git config --global credential.helper store
