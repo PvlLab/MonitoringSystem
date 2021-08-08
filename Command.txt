@@ -1,13 +1,18 @@
 ﻿Các bước cài đặt Centos 7 và cấu hình sshd
 
 Bước 1: Cấu hình kết nối mạng cho máy mới cài đặt
-    - Update các gói mới => yum update -y
     - Kiểm tra mạng => ip a (xem máy đã nhận dải ip chưa, nếu chưa thì cấu hình mạng)
     - Sửa cấu hình mạng => vi /etc/sysconfig/network-scripts/ifcfg-enp0se (trong đó 'enp0se' có thể thay đổi theo cacd mạng của từng máy)
         Đổi thuộc tính ONBOOT=yes
         Có thể phải set ip tĩnh.
+        IPADDR=192.168.1.111
+        GATEWAY=192.168.1.1
+        NETMASK=255.255.255.0
+        DNS1=8.8.8.8
+        DNS2=8.8.4.4
     - khởi động lại máy => reboot
     - Kiểm tra mạng bằng lệnh: ip a (xem máy đã nhận dải ip chưa)
+    - Update các gói mới => yum update -y
 
 Bước 2: Tắt firewalld và cài đặt iptables
     - Kiểm tra firewalld có đang chạy hay không => sudo systemctl status firewalld
@@ -42,6 +47,11 @@ Bước 2: Tắt firewalld và cài đặt iptables
         Thiết lập một dải port => firewall-cmd --zone=public --add-port=4990-5000/tcp --permanent
         Đóng port => firewall-cmd --zone=public --remove-port=9999/tcp
         
+        firewall-cmd --zone=public --add-port=8080/tcp --permanent
+        firewall-cmd --zone=public --add-port=9093/tcp --permanent
+        firewall-cmd --zone=public --add-port=9090/tcp --permanent
+        firewall-cmd --zone=public --add-port=3000/tcp --permanent
+        
 
 Bước 3: cài đặt ssh
     - Kiểm tra ssh có đang chạy hay không => sudo systemctl status sshd
@@ -58,3 +68,8 @@ Bước 3: cài đặt ssh
 
 Cài dặt git => sudo yum -y install git
 Cấu hình git lưu thông tin đăng nhập => git config --global credential.helper store
+
+Cài đặt docker mà bị lỗi không save thông tin repo là do mang đang cố gắng phân giải bằng ip v6, chuyển qua ip v4 là hết
+    Sửa cấu hình vi /etc/yum.confg 
+        ip_resolve = 4
+        Save lại
