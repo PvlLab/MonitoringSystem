@@ -58,6 +58,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=31d'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
     ports:
@@ -75,6 +76,7 @@ services:
     container_name: logmetrics-grafana
     hostname: logmetricsgrafana
     restart: always
+    user: root
     volumes:
       - /root/grafana:/var/lib/grafana
     environment:
