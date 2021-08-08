@@ -56,7 +56,7 @@ services:
       - /root/prometheus:/etc/prometheus
       - /root/prometheus_data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--config.file=/etc/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
       - '--storage.tsdb.retention=31d'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
