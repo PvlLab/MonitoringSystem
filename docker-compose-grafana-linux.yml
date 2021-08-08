@@ -53,7 +53,6 @@ services:
       - TZ=Asia/Ho_Chi_Minh
       - ApplicationId=logmetrics-prometheus
     volumes:
-      - /root/prometheus_confg:/etc/prometheus
       - /root/prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
