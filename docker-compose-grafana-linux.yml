@@ -45,6 +45,7 @@ services:
     image: logmetrics-prometheus
     container_name: logmetrics-prometheus
     hostname: logmetricsprometheus
+    user: root
     build:
       context: .
       dockerfile: prometheus/Dockerfile
