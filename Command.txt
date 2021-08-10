@@ -73,3 +73,21 @@ Cài đặt docker mà bị lỗi không save thông tin repo là do mang đang 
     Sửa cấu hình vi /etc/yum.confg 
         ip_resolve = 4
         Save lại
+
+Đường dẫn tìm dashboards của grafana : https://grafana.com/grafana/dashboards
+
+Cài github action 
+    Cài đặt .net core sdk trước: 
+    Cài đặt checksum => yum install -y perl-Digest-SHA
+    Cài đặt biến môi trường để cho phép runner bằng quyền root => export RUNNER_ALLOW_RUNASROOT=1
+    Cài đặt github action bị lỗi ở Authentication => 
+
+
+Xem log trên CentOs7
+    more -f /var/log/secure
+    tail -n 30 /var/log/secure
+
+
+Tại tài khoản mới trên Centos
+    useradd githubaction
+    passwd githubaction

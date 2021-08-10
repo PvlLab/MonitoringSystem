@@ -4,15 +4,7 @@
 	- z đại diện cho các bản update nhỏ, các bản vá bảo mật vvv
 
 Danh sách các tính năng ver 1.0.0
-	- Hiển thị log theo ứng dụng
-	- Quản lý danh sách ứng dụng đăng ký
-	- Xóa log định kỳ theo thời gian
-	- Xóa hết log của một ứng dụng
-
-Danh sách các tính năng ver 1.0.1
-	- Chuyển List về HashSet ở object DistributeLogOptions
-	- Thêm health check
-	- thêm quá trình unit test và confirm test vào quy trình triển khai
-
-Danh sách các tính năng ver 1.1.3
-	- Bổ sưng thêm cách xác định máy chủ lỗi dựa vào biến môi trường
+	- Cài đặt hoàn thiện prometheus, grafana, cAdvisor, alertmanager chạy trên Centos 7 để monitoring chính nó
+	- Cấu hình để prometheus lấy dữ liệu từ cAdvisor 5s một lần
+	- Cấu hình để grafana đọc dữ liệu từ prometheus và trình bay dashboards: 14282
+	- Cấu hình để prometheus gửi cảnh báo sang alertmanager và alertmanager gửi cảnh báo ra telegram

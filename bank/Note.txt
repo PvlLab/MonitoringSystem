@@ -1,0 +1,10 @@
+﻿Core Banking => là một hệ thống các phân hệ nghiệp vụ cơ bản của Ngân hàng như tiền gửi, tiền vay, khách hàng ... Và có thể tích hợp thêm các module phần mềm khác.
+Danh sách phần mềm Core banking.
+    SIBA => Đây là Core Banking có tuổi thọ khá lâu, được phát triển trên nền FOX for DOS. Có nhiều tranh cãi, nhưng tên tuổi của SIBA vẫn gắn liền với FPT. Trước đây được sử dụng rất rộng rãi nhưng tại thời điểm hiện tại không đáp ứng được nhu cầu.
+    Silver Lake SIBS Axis =>  được áp dụng tại VCB, BIDV, VietinBank, MSB…
+    Teminos => Techcombank là Ngân hàng đầu tiên sử dụng giải pháp của Teminos (Phần mềm Globus); và cho tới hiện tại khá nhiều Ngân hàng đang triển khai giải pháp này: Sacombank, SeAbank, Ngân hàng Quân đội, VP Bank… 
+    TCBS của Unisys => triển khai ở ACB.
+    Symbol System => Là giải pháp của hãng System Access, được triển khai ở VIBank, HDBank.
+    Huyndai => Hiện đang triển khai tại Ngân hàng Nông nghiệp.
+    TI Core ( Transinfotech – Singapore) => đang được MHB, Đại Á,… sử dụng. I-Flex với FLEXCUBE ở Habubank, PG Bank, Liên Việt, và INDOVINA…
+    Bank2000, Smartbank  => sản phẩm của FPT.
